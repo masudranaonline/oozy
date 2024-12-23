@@ -60,6 +60,7 @@ class TechnicianController extends Controller
         return response()->json([
             'items' => $technicians->items(), // Current page items
             'total' => $technicians->total(), // Total number of records
+            'data' => $technicians,
         ]);
     }
 

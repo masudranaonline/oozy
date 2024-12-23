@@ -28,16 +28,31 @@
             errors.breakdown_problem_note ? errors.breakdown_problem_note : ''
           "
         />
+        <v-row>
+          <v-col cols="6">
+          <v-textarea
+            v-model="breakdown_service.breakdown_technician_problem_note"
+            :rules="[rules.required]"
+            :error-messages="errors.breakdown_technician_problem_note || ''"
+          >
+              <template v-slot:label>
+                Technician Feedback <span style="color: red">*</span>
+              </template>
+            </v-textarea>
+          </v-col>
+          <v-col cols="6">
+            <v-textarea
+              v-model="breakdown_service.breakdown_technician_problem_action"
+              :rules="[rules.required]"
+              :error-messages="errors.breakdown_technician_problem_action || ''"
+            >
+                <template v-slot:label>
+                  Technician Action <span style="color: red">*</span>
+                </template>
+              </v-textarea>
+            </v-col>
+        </v-row>
 
-        <v-textarea
-          v-model="breakdown_service.breakdown_technician_problem_note"
-          :rules="[rules.required]"
-          :error-messages="errors.breakdown_technician_problem_note || ''"
-        >
-          <template v-slot:label>
-            Technician Note <span style="color: red">*</span>
-          </template>
-        </v-textarea>
         <v-row>
           <v-col cols="6">
             <v-autocomplete
@@ -141,6 +156,7 @@ export default {
         breakdown_problem_note: "",
         breakdown_service_status: null, // New property for checkbox
         breakdown_technician_problem_note: null,
+        breakdown_technician_problem_action: null,
         parts_id: null,
         parts_quantity: "",
         parts_quantity_show: "",

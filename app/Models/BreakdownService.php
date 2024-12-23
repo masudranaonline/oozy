@@ -23,6 +23,7 @@ class BreakdownService extends Model
         'breakdown_service_technician_status',
         'service_time',
         'service_date',
+        'breakdown_technician_problem_note',
     ];
 
     public static function validationRules()

@@ -24,12 +24,6 @@
         </v-autocomplete>
 
         <!-- Technician ID and Name Display -->
-        <v-text-field
-          v-model="breakdown_service.technician_name"
-          :readonly="true"
-          label="Technician Name"
-          outlined
-        ></v-text-field>
 
         <!-- Technician Selection (if you want to change the technician) -->
         <v-autocomplete
@@ -41,13 +35,10 @@
           outlined
           clearable
           density="comfortable"
+          :rules="[rules.required]"
+          :error-messages="errors.technician_id || ''"
           @update:search="fetchTechnicians"
-        >
-          <template v-slot:label>
-            Select Technician
-          </template>
-        </v-autocomplete>
-
+        />
         <!-- Service Status -->
         <v-select
           v-model="breakdown_service.breakdown_service_status"
@@ -90,28 +81,29 @@
   </v-alert>
 </template>
 
+
+
 <script>
 import { ref } from "vue";
 import { toast } from "vue3-toastify";
 
 export default {
   data() {
+
     return {
       valid: false,
       loading: false, // Controls loading state of the button
       statusItems: ["Processing"],
 
+
       breakdown_service: {
         machine_id: null,
-        technician_id: null,
-        technician_name: "", // Store the technician's name
         breakdown_service_status: "Processing", // Default status
       },
 
       errors: {},
       serverError: null,
       machine_codes: [],
-      technicianItems: [], // Array to store technician data
       rules: {
         required: (value) => !!value || "Required.",
       },

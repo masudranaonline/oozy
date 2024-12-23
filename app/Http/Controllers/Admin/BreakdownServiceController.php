@@ -279,6 +279,7 @@ class BreakdownServiceController extends Controller
             'breakdown_problem_note_id'         => 'nullable', // Validate machine_id if provided
             'breakdown_problem_note'            => 'nullable',
             'breakdown_technician_problem_note' => 'nullable',
+            'breakdown_technician_problem_action' => 'nullable',
             'parts_id'                          => 'nullable',
             'parts_quantity'                    => 'nullable',
         ]);
@@ -319,6 +320,7 @@ class BreakdownServiceController extends Controller
         $breakdownService->breakdown_service_status                 = $validatedData['breakdown_service_status'];
         $breakdownService->breakdown_problem_note                   = $validatedData['breakdown_problem_note'];
         $breakdownService->breakdown_technician_problem_note        = $validatedData['breakdown_technician_problem_note'];
+        $breakdownService->breakdown_technician_problem_action      = $validatedData['breakdown_technician_problem_action'];
         $breakdownService->parts_id                                 = $validatedData['parts_id'] ? $validatedData['parts_id'] : 0;
         $breakdownService->parts_quantity                           = $validatedData['parts_quantity'] ? $validatedData['parts_quantity'] : 0;
         $breakdownService->breakdown_service_technician_status      = $validatedData['breakdown_service_status'] == "Done" ? "Success" : "Failed";
